@@ -1,0 +1,23 @@
+.dragAndDrop__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.people {
+    margin: 10px 30px;
+    cursor: pointer;
+  }
+
+  .people__title {
+    background-color: yellow;
+  }
+  
+  .group__title {
+    background-color: rgb(74, 74, 250);
+  }
+  
+  .group {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+  }

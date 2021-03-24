@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { useReducer } from "react";
+import DashboardPage from "./pages/dashboard-page";
+import { ModalContext } from "./context";
 
-function App() {
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+const modalReducer = (state, action) => {
+  switch (action.type) {
+    case "ADD":
+      return { item: null, isShow: true };
+
+    case "EDIT":
+      return { item: action.payload, isShow: true };
+
+    case "CLOSE":
+      return { item: null, isShow: false };
+    default:
+      return { item: null, isShow: false };
+  }
+};
+
+const App = () => {
+  const [modalState, dispatchModalState] = useReducer(modalReducer, {
+    item: null,
+    isShow: false,
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ModalContext.Provider value={{ modalState, dispatchModalState }}>
+      <DashboardPage />
+    </ModalContext.Provider>
   );
-}
+};
 
 export default App;
